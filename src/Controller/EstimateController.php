@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Estimate;
+use App\Entity\Invoice;
 use App\Repository\EstimateRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,8 +29,16 @@ class EstimateController extends AbstractController
      */
     public function findNbEstimates(): Response
     {
-        $nbEstimates = count($this->estimateRepository->findBy(['state' => true]));
-        $response = new Response($nbEstimates, Response::HTTP_OK);
+        $estimates = $this->estimateRepository->findBy(['state' => true, 'archive' => false]);
+        $total = 0;
+        foreach ($estimates as $estimate){
+            if ($estimate->getInvoice()->getTypeInvoice() === Invoice::FACTURE_ACOMPTE ||
+                !$estimate->getInvoice()->getMeansPayment() && $estimate->getInvoice()->getTypeInvoice() === Invoice::FACTURE_FINALE
+            ){
+                $total += 1;
+            }
+        }
+        $response = new Response($total, Response::HTTP_OK);
         $response->setMaxAge(3600);
         return $response;
     }
