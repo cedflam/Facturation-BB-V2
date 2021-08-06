@@ -6,6 +6,7 @@ import {Provider} from "react-redux";
 import store from "./src/redux/store";
 // Composants
 import Header from "./src/components/Header";
+import LoginPage from "./src/pages/LoginPage";
 import HomePage from "./src/pages/HomePage";
 import NoMatchComponent from "./src/components/NoMatchComponent";
 
@@ -17,6 +18,7 @@ function App() {
                     <Router>
                         <Header/>
                         <Switch>
+                            <Route exact path="/login"  component={LoginPage} />
                             <Route exact path="/"  component={HomePage} />
                             <Route path="/"  component={NoMatchComponent} />
                         </Switch>

@@ -4,11 +4,13 @@ import thunk from "redux-thunk";
 import customerReducer from "./reducers/customerReducer";
 import estimateReducer from "./reducers/estimateReducer";
 import invoiceReducer from "./reducers/invoiceReducer";
+import loginReducer from "./reducers/loginReducer";
 
 const rootReducer = combineReducers({
     customerReducer,
     estimateReducer,
-    invoiceReducer
+    invoiceReducer,
+    loginReducer
 
 });
 

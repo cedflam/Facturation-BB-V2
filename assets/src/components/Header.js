@@ -1,11 +1,22 @@
 import React, {Fragment} from 'react';
 import logo from "../../public/img/bb-logo.jpg";
 import {Link} from "react-router-dom";
+
+import {useDispatch, useSelector} from "react-redux";
+import {logout} from "../redux/actions/loginActions";
+
 const HeaderComponent = () => {
+
+    // Propriétés
+    const dispatch = useDispatch();
+    // Fonction de déconnexion
+    const handleLogout = () => {
+        dispatch(logout());
+    }
+
     return (
         <Fragment>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark ">
-
                 <a className="navbar-brand" href="#">
                     <img src={logo} alt="logo"/>
                 </a>
@@ -40,8 +51,13 @@ const HeaderComponent = () => {
                           </Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link btn btn-sm btn-danger text-white" href="#" tabIndex="-1"
-                               aria-disabled="true">Déconnexion</a>
+                            <a className="nav-link btn btn-sm btn-primary text-white" href="#" tabIndex="-1"
+                               aria-disabled="true">Connexion</a>
+                        </li>
+                        <li className="nav-item">
+                            <button className="nav-link btn btn-sm btn-danger text-white" tabIndex="-1"
+                               aria-disabled="true" onClick={handleLogout}>Déconnexion
+                            </button>
                         </li>
                     </ul>
                 </div>

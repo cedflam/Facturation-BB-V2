@@ -34,6 +34,7 @@ const HomePage = () => {
         dispatch(findTotalInvoicesFinalized());
     }, []);
 
+
     return (
         <Fragment>
            <div className="container">
