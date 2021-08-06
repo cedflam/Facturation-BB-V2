@@ -10,19 +10,19 @@
     <title>{% block title %}Welcome!{% endblock %}</title>
 
     {% block stylesheets %}
-        {{ encore_entry_link_tags('app') }}
+        {{ encore_entry_link_tags('styles') }}
     {% endblock %}
 </head>
 <body>
-    {% include 'partials/_header.html.twig' %}
 
-    {% block body %}{% endblock %}
+
+{% block body %}{% endblock %}
 
 <script src="{{ asset('js/jquery.min.js') }}"></script>
 <script src="{{ asset('js/popper.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 {% block javascripts %}
-    {{ encore_entry_script_tags('home') }}
+    {{ encore_entry_script_tags('app') }}
 {% endblock %}
 
 </body>
