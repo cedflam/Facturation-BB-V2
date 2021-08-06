@@ -24,7 +24,7 @@ const HomePage = () => {
 
     } = useSelector( (state) => state.invoiceReducer);
 
-    // Je récupère les datas
+    // Je récupère les datas depuis le store
     useEffect(() => {
         dispatch(findNbCustomers());
         dispatch( findNbEstimates());
