@@ -3,6 +3,15 @@ background-color: #5a6268;
 }
 
 #divShadow{
-    box-shadow: 5px 10px 30px slategrey;
+    box-shadow: 5px 10px 30px black;
 }
 
+.bg {
+    background-image: url("../../public/img/bg-masthead.jpg");
+    background-size: cover;
+    padding-bottom: 350px;
+}
+
+.card-login {
+    margin-top: 200px;
+}

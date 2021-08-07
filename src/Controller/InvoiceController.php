@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Invoice;
 use App\Repository\InvoiceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -52,14 +53,14 @@ class InvoiceController extends AbstractController
         foreach($invoices as $invoice){
             $total += $invoice->getRemainingCapital();
         }
-        $total = number_format($total, 2, ',', ' ');
+        //$total = number_format($total, 2, ',', ' ');
         $response = new Response($total, Response::HTTP_OK);
         $response->setMaxAge(3600);
         return $response;
     }
 
     /**
-     * Permet de récupérer tous les acomptes versés sur les factures de l'année en cours
+     * Permet de récupérer tous les acomptes versés sur les factures en cours
      * pour les factures qui sont en status 'acompte'
      * @Route("/api/invoices/findTotalAdvances", name="find_totalAdvances")
      * @return Response
@@ -71,7 +72,7 @@ class InvoiceController extends AbstractController
         foreach($invoices as $invoice){
             $total += $invoice->getTotalAdvance();
         }
-        $total = number_format($total, 2, ',', ' ');
+        //$total = number_format($total, 2, ',', ' ');
         $response = new Response($total, Response::HTTP_OK);
         $response->setMaxAge(3600);
         return $response;
@@ -94,7 +95,25 @@ class InvoiceController extends AbstractController
                 $total += $invoice->getTotalTtc();
             }
         }
-        $total = number_format($total, 2, ',', ' ');
+        //$total = number_format($total, 2, ',', ' ');
+        $response = new Response($total, Response::HTTP_OK);
+        $response->setMaxAge(3600);
+        return $response;
+    }
+
+    /**
+     * Permet de calculer le CA présionnel après le règlement de toutes les factures
+     * @Route("/api/invoices/findCaProvisional", name="invoice_findCaProvisional", methods={"GET"})
+     * @return Response
+     */
+    public function findCaProvisional(): Response
+    {
+        $totalInvoicesNotFinalized = $this->findTotalAmountFinalInvoices()->getContent();
+        $totalAmountInvoicesFinalized = $this->findTotalInvoicesFinalized()->getContent();
+        $totalAdvance = $this->findTotalAdvances()->getContent();
+
+        $total = floatval($totalInvoicesNotFinalized )+ floatval($totalAmountInvoicesFinalized) + floatval($totalAdvance);
+
         $response = new Response($total, Response::HTTP_OK);
         $response->setMaxAge(3600);
         return $response;

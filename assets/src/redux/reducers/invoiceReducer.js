@@ -12,19 +12,25 @@ function invoiceReducer(state = INITIAL_STATE, action)
         case 'FIND_TOTAL_AMOUNT_FINAL_INVOICES': {
             return {
                 ...state,
-                crdFinalInvoices : action.payload
+                crdFinalInvoices : action.payload.toFixed(2)
             }
         }
         case 'FIND_TOTAL_ADVANCES': {
             return {
                 ...state,
-                totalAdvances: action.payload
+                totalAdvances: action.payload.toFixed(2)
             }
         }
         case 'FIND_FINALIZED_INVOICES': {
             return {
                 ...state,
-                totalInvoicesFinalized: action.payload
+                totalInvoicesFinalized: action.payload.toFixed(2)
+            }
+        }
+        case 'FIND_CA_PROVISIONAL' : {
+            return {
+                ...state,
+                totalCaProvisional: action.payload.toFixed(2)
             }
         }
         default:

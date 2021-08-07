@@ -18,6 +18,7 @@ const HeaderComponent = ({isAuthenticated, onLogout, history}) => {
 
     return (
         <Fragment>
+            { isAuthenticated &&
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark ">
                 <a className="navbar-brand" href="#">
                     <img src={logo} alt="logo"/>
@@ -29,7 +30,9 @@ const HeaderComponent = ({isAuthenticated, onLogout, history}) => {
                 </button>
 
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav mx-auto">
+
+                    <ul className="navbar-nav ml-auto">
+
                         <li className="nav-item">
                             <a className="nav-link" href="#">Clients</a>
                         </li>
@@ -39,34 +42,27 @@ const HeaderComponent = ({isAuthenticated, onLogout, history}) => {
                         <li className="nav-item">
                             <a className="nav-link " href="#">Factures</a>
                         </li>
-                        <li className="nav-item">
+                        <li className="nav-item mr-5">
                             <a className="nav-link " href="#">Archives</a>
                         </li>
-                    </ul>
-                    <ul className="navbar-nav ml-auto">
-
                         <li className="nav-item ">
-                          <Link to="/">
-                              <p className="nav-link btn btn-sm btn-primary px-5 mr-3">
-                                  <i className="fas fa-home text-white"></i>
-                              </p>
-                          </Link>
+                            <Link to="/">
+                                <p className="nav-link btn btn-sm btn-warning text-white px-5 mr-3">
+                                    <i className="fas fa-home text-white"></i>
+                                </p>
+                            </Link>
                         </li>
-                        { !isAuthenticated &&
-                        <li className="nav-item">
-                            <Link className="nav-link btn btn-sm btn-primary text-white" to="/login" tabIndex="-1"
-                               aria-disabled="true">Connexion</Link>
-                        </li>
-                        ||
                         <li className="nav-item">
                             <button className="nav-link btn btn-sm btn-danger text-white" tabIndex="-1"
-                               aria-disabled="true" onClick={handleLogout}>Déconnexion
+                                    aria-disabled="true" onClick={handleLogout}>Déconnexion
                             </button>
                         </li>
-                        }
+
                     </ul>
+
                 </div>
             </nav>
+            }
         </Fragment>
     );
 };

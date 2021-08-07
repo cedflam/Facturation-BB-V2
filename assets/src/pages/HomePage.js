@@ -4,11 +4,16 @@ import '../../bootstrap';
 import React, {Fragment, useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 
-
 import BoxComponent from "../components/BoxComponent";
 import {findNbCustomers} from "../redux/actions/customerActions";
 import {findNbEstimates} from "../redux/actions/estimateActions";
-import {findNbTotalInvoices, findTotalAmountFinalInvoices, findTotalAdvances, findTotalInvoicesFinalized} from "../redux/actions/invoiceActions";
+import {
+    findNbTotalInvoices,
+    findTotalAmountFinalInvoices,
+    findTotalAdvances,
+    findTotalInvoicesFinalized,
+    findCaProvisional
+} from "../redux/actions/invoiceActions";
 
 
 const HomePage = () => {
@@ -20,7 +25,8 @@ const HomePage = () => {
         nbTotalInvoices,
         crdFinalInvoices,
         totalAdvances,
-        totalInvoicesFinalized
+        totalInvoicesFinalized,
+        totalCaProvisional
 
     } = useSelector( (state) => state.invoiceReducer);
 
@@ -32,8 +38,9 @@ const HomePage = () => {
         dispatch(findTotalAmountFinalInvoices());
         dispatch(findTotalAdvances());
         dispatch(findTotalInvoicesFinalized());
+        dispatch(findCaProvisional());
     }, []);
-
+    console.log(totalCaProvisional)
 
     return (
         <Fragment>
@@ -52,7 +59,9 @@ const HomePage = () => {
                    <div className={`card-body  text-white rounded-top bg-dark`} >
                        <div className="row">
                            <div className="ml-3">
-                               <h1 className="font-weight-bold"> </h1>
+                               <h1 className="font-weight-bold">
+                                   {totalCaProvisional}
+                               </h1>
                                <p>Chiffre d'affaire de l'année en cours</p>
                            </div>
                            <h1 className=" display-4 ml-auto mr-3">

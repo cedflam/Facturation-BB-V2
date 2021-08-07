@@ -1,6 +1,7 @@
 import React, {Fragment} from 'react';
 
 const BoxComponent = ({title, number, link, logo, color}) => {
+
     return (
         <Fragment>
             <div className="col-md-4">
