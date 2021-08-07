@@ -1,17 +1,19 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useState} from 'react';
 import logo from "../../public/img/bb-logo.jpg";
 import {Link} from "react-router-dom";
 
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {logout} from "../redux/actions/loginActions";
 
-const HeaderComponent = () => {
+const HeaderComponent = ({isAuthenticated, onLogout, history}) => {
 
     // Propriétés
     const dispatch = useDispatch();
     // Fonction de déconnexion
-    const handleLogout = () => {
-        dispatch(logout());
+    const handleLogout = async () => {
+        await dispatch(logout());
+        onLogout(false);
+        history.push("/login");
     }
 
     return (
@@ -50,15 +52,18 @@ const HeaderComponent = () => {
                               </p>
                           </Link>
                         </li>
+                        { !isAuthenticated &&
                         <li className="nav-item">
-                            <a className="nav-link btn btn-sm btn-primary text-white" href="#" tabIndex="-1"
-                               aria-disabled="true">Connexion</a>
+                            <Link className="nav-link btn btn-sm btn-primary text-white" to="/login" tabIndex="-1"
+                               aria-disabled="true">Connexion</Link>
                         </li>
+                        ||
                         <li className="nav-item">
                             <button className="nav-link btn btn-sm btn-danger text-white" tabIndex="-1"
                                aria-disabled="true" onClick={handleLogout}>Déconnexion
                             </button>
                         </li>
+                        }
                     </ul>
                 </div>
             </nav>

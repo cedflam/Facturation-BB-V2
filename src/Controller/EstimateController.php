@@ -25,7 +25,7 @@ class EstimateController extends AbstractController
 
     /**
      * Permet de retourner le nombre total   de devis actifs
-     * @Route("/estimates/findNbEstimates", name="find_nbEstimates")
+     * @Route("/api/estimates/findNbEstimates", name="find_nbEstimates")
      */
     public function findNbEstimates(): Response
     {

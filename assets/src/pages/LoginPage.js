@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 
 import {loginCheck} from "../redux/actions/loginActions";
 
-const LoginPage = () => {
+const LoginPage = ({onLogin, history}) => {
 
     // Propriétés
     const [credentials, setCredentials] = useState({
@@ -23,6 +23,8 @@ const LoginPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         await dispatch(loginCheck(credentials));
+        onLogin(true);
+        history.push("/");
     }
 
     return (

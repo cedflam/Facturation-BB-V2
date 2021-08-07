@@ -27,7 +27,7 @@ class CustomerController extends AbstractController
 
     /**
      * Permet de retourner le nombre total de customers
-     * @Route("/customers/findNbCustomers", name="find_nbCustomers")
+     * @Route("/api/customers/findNbCustomers", name="find_nbCustomers")
      * @return Response
      */
     public function findNbCustomers(): Response

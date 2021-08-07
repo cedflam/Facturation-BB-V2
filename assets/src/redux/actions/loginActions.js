@@ -10,8 +10,8 @@ export const LOGIN_ERROR = "LOGIN_ERROR";
  * @returns {(function(*): void)|*}
  */
 export const loginCheck = (credentials) => {
-    return (dispatch) => {
-        axios.post('/login_check', credentials)
+     return  (dispatch) => {
+        axios.post('/api/login_check', credentials)
             .then( (response) => {
                 dispatch({
                     type: LOGIN_CHECK, payload: response.data

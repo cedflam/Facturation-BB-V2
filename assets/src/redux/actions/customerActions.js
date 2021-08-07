@@ -1,4 +1,5 @@
 import axios from "axios";
+import {axiosSetupService} from "../../service/AppService";
 
 export const FIND_NB_CUSTOMERS = "FIND_NB_CUSTOMERS";
 
@@ -8,12 +9,12 @@ export const FIND_NB_CUSTOMERS = "FIND_NB_CUSTOMERS";
  */
 export const findNbCustomers = () => {
     return (dispatch) => {
-        axios.get('/customers/findNbCustomers')
-            .then((response) => {
+        axios.get('/api/customers/findNbCustomers')
+             .then((response) => {
                 dispatch({
                     type: FIND_NB_CUSTOMERS, payload: response.data
                 })
-            })
-            .catch((error) => console.log(error.response))
+             })
+             .catch((error) => console.log(error.response))
     }
 }

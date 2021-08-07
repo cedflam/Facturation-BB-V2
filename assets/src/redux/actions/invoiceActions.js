@@ -11,7 +11,7 @@ export const FIND_FINALIZED_INVOICES = "FIND_FINALIZED_INVOICES";
  */
 export const findNbTotalInvoices = () => {
     return (dispatch) => {
-        axios.get('/invoices/nbTotalInvoices')
+        axios.get('/api/invoices/nbTotalInvoices')
             .then((response) => {
                 dispatch({
                     type: FIND_NB_INVOICES, payload: response.data
@@ -27,7 +27,7 @@ export const findNbTotalInvoices = () => {
  */
 export const findTotalAmountFinalInvoices = () => {
     return (dispatch) => {
-        axios.get('/invoices/findTotalAmountFinalInvoices')
+        axios.get('/api/invoices/findTotalAmountFinalInvoices')
             .then((response) => {
                 dispatch({
                     type: FIND_TOTAL_AMOUNT_FINAL_INVOICES, payload: response.data
@@ -43,7 +43,7 @@ export const findTotalAmountFinalInvoices = () => {
  */
 export const findTotalAdvances = () => {
     return (dispatch) => {
-        axios.get('/invoices/findTotalAdvances')
+        axios.get('/api/invoices/findTotalAdvances')
             .then((response) => {
                 dispatch({
                     type: FIND_TOTAL_ADVANCES, payload: response.data
@@ -59,7 +59,7 @@ export const findTotalAdvances = () => {
  */
 export const findTotalInvoicesFinalized = () => {
     return (dispatch) => {
-        axios.get('/invoices/findTotalInvoicesFinalized')
+        axios.get('/api/invoices/findTotalInvoicesFinalized')
             .then((response) => {
                 dispatch({
                     type: FIND_FINALIZED_INVOICES, payload: response.data

@@ -24,7 +24,7 @@ class InvoiceController extends AbstractController
 
     /**
      * Permet de récupérer le nombre de factures en cours
-     * @Route("/invoices/nbTotalInvoices", name="find_nbTotalInvoices")
+     * @Route("/api/invoices/nbTotalInvoices", name="find_nbTotalInvoices")
      * @return Response
      */
     public function findNbInvoices(): Response
@@ -43,7 +43,7 @@ class InvoiceController extends AbstractController
 
     /**
      * Permet de calculer le total des factures finales en cours non réglées
-     * @Route("/invoices/findTotalAmountFinalInvoices", name="find_totalAmount_finalInvoices")
+     * @Route("/api/invoices/findTotalAmountFinalInvoices", name="find_totalAmount_finalInvoices")
      */
     public function findTotalAmountFinalInvoices(): Response
     {
@@ -61,7 +61,7 @@ class InvoiceController extends AbstractController
     /**
      * Permet de récupérer tous les acomptes versés sur les factures de l'année en cours
      * pour les factures qui sont en status 'acompte'
-     * @Route("/invoices/findTotalAdvances", name="find_totalAdvances")
+     * @Route("/api/invoices/findTotalAdvances", name="find_totalAdvances")
      * @return Response
      */
     public function findTotalAdvances(): Response
@@ -79,7 +79,7 @@ class InvoiceController extends AbstractController
 
     /**
      * Permet de récupérer le total des factures finalisées de l'année en cours
-     * @Route("/invoices/findTotalInvoicesFinalized", name="find_totalInvoicesFinalized")
+     * @Route("/api/invoices/findTotalInvoicesFinalized", name="find_totalInvoicesFinalized")
      * @return Response
      */
     public function findTotalInvoicesFinalized(): Response
