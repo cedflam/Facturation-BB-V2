@@ -1,17 +1,15 @@
 body {
-background-color: #5a6268;
+background-color: #000000;
 }
 
 #divShadow{
-    box-shadow: 5px 10px 30px black;
-}
-
-.bg {
-    background-image: url("../../public/img/bg-masthead.jpg");
-    background-size: cover;
-    padding-bottom: 350px;
+    box-shadow: 2px 2px 15px grey;
 }
 
 .card-login {
     margin-top: 200px;
+}
+
+.title-shadow {
+    text-shadow: grey 0.1em 0.1em 0.2em
 }

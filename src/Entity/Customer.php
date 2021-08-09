@@ -23,7 +23,7 @@ class Customer
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"customers_list"})
+     * @Groups({"customers_read"})
      */
     private $id;
 
@@ -37,43 +37,43 @@ class Customer
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"customers_list"})
+     * @Groups({"customers_read"})
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"customers_list"})
+     * @Groups({"customers_read"})
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"customers_list"})
+     * @Groups({"customers_read"})
      */
     private $address;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"customers_list"})
+     * @Groups({"customers_read"})
      */
     private $postCode;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"customers_list"})
+     * @Groups({"customers_read"})
      */
     private $city;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"customers_list"})
+     * @Groups({"customers_read"})
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"customers_list"})
+     * @Groups({"customers_read"})
      */
     private $phone;
     /**
@@ -84,12 +84,14 @@ class Customer
     /**
      * @ORM\OneToMany(targetEntity=Estimate::class, mappedBy="customer")
      * @ORM\OrderBy({"createdAt" = "DESC"})
+     * @Groups({"customers_read"})
      */
     private $estimates;
 
     /**
      * @ORM\OneToMany(targetEntity=Invoice::class, mappedBy="customer")
      * @ORM\OrderBy({"createdAt" = "DESC"})
+     * @Groups({"customers_read"})
      */
     private $invoices;
 

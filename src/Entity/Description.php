@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\DescriptionRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=DescriptionRepository::class)
@@ -15,7 +16,7 @@ class Description
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     *
+     * @Groups({"customers_read"})
      */
     private $id;
 
@@ -28,41 +29,49 @@ class Description
     }
     /**
      * @ORM\Column(type="string", length=2000)
+     * @Groups({"customers_read"})
      */
     private $prestation;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups({"customers_read"})
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="float")
+     * @Groups({"customers_read"})
      */
     private $unitPrice;
 
     /**
      * @ORM\Column(type="float")
+     * @Groups({"customers_read"})
      */
     private $quantity;
 
     /**
      * @ORM\Column(type="float")
+     * @Groups({"customers_read"})
      */
     private $tva;
 
     /**
      * @ORM\Column(type="float")
+     * @Groups({"customers_read"})
      */
     private $totalHt;
 
     /**
      * @ORM\Column(type="float")
+     * @Groups({"customers_read"})
      */
     private $totalTtc;
 
     /**
      * @ORM\ManyToOne(targetEntity=Estimate::class, inversedBy="descriptions")
+     *
      */
     private $estimate;
 

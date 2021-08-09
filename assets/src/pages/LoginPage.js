@@ -1,7 +1,6 @@
 import React, {Fragment, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import logo from '../../public/img/bb-logo.jpg';
-import bg from '../../public/img/bg-masthead.jpg';
 
 import {loginCheck} from "../redux/actions/loginActions";
 
@@ -12,9 +11,9 @@ const LoginPage = ({onLogin, history}) => {
         username: "",
         password: ""
     });
+    const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
     const login = useSelector((state) => state.loginReducer);
-
     // Données saisies dans le formulaire
     const handleChange = (e) => {
         const value = e.currentTarget.value;
@@ -22,19 +21,27 @@ const LoginPage = ({onLogin, history}) => {
         setCredentials({...credentials, [name]: value});
     }
     // Soumission du formulaire
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        await dispatch(loginCheck(credentials));
-        onLogin(true);
-        history.push("/");
+        dispatch(loginCheck(credentials));
+        setTimeout( () => {
+            onLogin(true);
+            history.push('/');
+        }, 1000)
+        setLoading(true);
     }
 
     return (
         <Fragment>
+            { loading ?
+                <div className="text-white text-center mt-5 p-5">
+                    Chargement ...
+                </div>
+                :
             <div className="container-fluid bg">
                 <div className="container p-5 ">
                     <div className="col-md-6 mt-5 mx-auto" >
-                        <div className="card bg-warning card-login" id="divShadow">
+                        <div className="card bg-secondary text-white card-login" id="divShadow">
                             <div className="card-header text-center">
                                 <img src={logo} alt=""/>
                             </div>
@@ -58,6 +65,8 @@ const LoginPage = ({onLogin, history}) => {
                     </div>
                 </div>
             </div>
+
+            }
         </Fragment>
     );
 };

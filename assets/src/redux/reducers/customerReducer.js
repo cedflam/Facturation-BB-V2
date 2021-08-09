@@ -9,6 +9,12 @@ function customerReducer(state = INITIAL_STATE, action)
                 nbCustomers : action.payload
             }
         }
+        case 'FIND_ALL_CUSTOMERS' : {
+            return {
+                ...state,
+                customers: action.payload
+            }
+        }
         default:
             return state
     }

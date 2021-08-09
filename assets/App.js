@@ -11,12 +11,14 @@ import Header from "./src/components/Header";
 import LoginPage from "./src/pages/LoginPage";
 import HomePage from "./src/pages/HomePage";
 import NoMatchComponent from "./src/components/NoMatchComponent";
+import CustomersPage from "./src/pages/CustomersPage";
 import PrivateRoute from "./src/components/PrivateRoute";
 
 // Je lance la configuration d'axios
 axiosSetupService();
 
 function App() {
+
     //Propriétés
     const [isAuthenticated, setIsAuthenticated] = useState(isAuthenticatedService());
     // inclure le header dans la redirection
@@ -31,6 +33,7 @@ function App() {
                         <Switch>
                             <Route exact path="/login" render={ (props) => <LoginPage onLogin={setIsAuthenticated} {...props}/> }/>
                             <PrivateRoute exact path={"/"} component={HomePage} isAuthenticated={isAuthenticated} />
+                            <PrivateRoute exact path={"/customers"} component={CustomersPage} isAuthenticated={isAuthenticated} />
                             <Route path={"/"} component={NoMatchComponent} />
                         </Switch>
                     </Router>

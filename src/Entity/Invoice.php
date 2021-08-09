@@ -6,7 +6,7 @@ use App\Repository\InvoiceRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Serializer\Annotation\Groups;
 
 
 /**
@@ -25,49 +25,58 @@ class Invoice
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"customers_read"})
      *
      */
     private $id;
 
     /**
      * @ORM\Column(type="float")
+     * @Groups({"customers_read"})
      */
     private $totalHt;
 
     /**
      * @ORM\Column(type="float")
+     * @Groups({"customers_read"})
      */
     private $totalTtc;
 
     /**
      * @ORM\Column(type="float", nullable=true)
+     * @Groups({"customers_read"})
      */
     private $totalAdvance;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Groups({"customers_read"})
      */
     private $state;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"customers_read"})
      *
      */
     private $typeInvoice;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups({"customers_read"})
      *
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"customers_read"})
      */
     private $reference;
 
     /**
      * @ORM\Column(type="float")
+     * @Groups({"customers_read"})
      */
     private $remainingCapital;
 
@@ -89,16 +98,19 @@ class Invoice
 
     /**
      * @ORM\OneToMany(targetEntity=Advance::class, mappedBy="invoice", cascade={"remove"})
+     * @Groups({"customers_read"})
      */
     private $advances;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"customers_read"})
      */
     private $meansPayment;
 
     /**
      * @ORM\Column(type="float", nullable=true)
+     * @Groups({"customers_read"})
      */
     private $extra;
 

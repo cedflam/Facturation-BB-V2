@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Repository\CustomerRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
 class CustomerController extends AbstractController
@@ -23,6 +25,21 @@ class CustomerController extends AbstractController
     {
         $this->customerRepository = $customerRepository;
         $this->serializer = $serializer;
+    }
+
+    /**
+     * Permet de récupérer tous les clients
+     * @Route("/api/customers", name="find_customers", methods={"GET"})
+     */
+    public function findCustomers(): Response
+    {
+        $customers = $this->customerRepository->findAll();
+
+        $datas = $this->serializer->normalize($customers, 'json',[
+            'groups' => 'customers_read'
+        ]);
+        return new JsonResponse($datas, Response::HTTP_OK);
+
     }
 
     /**

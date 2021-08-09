@@ -31,8 +31,25 @@ export function isAuthenticatedService(){
     if (token){
         // destructuring
         const {exp : expiration} = jwtDecode(token);
-        return expiration * 1000 > new Date().getTime();
+        if (expiration * 1000 > new Date().getTime()){
+            return true;
+        }
     }
     return false;
+}
+
+/**
+ * Permet de vérifier la présence des datas
+ * @param value
+ * @returns {boolean}
+ */
+export const isEmpty = (value) => {
+    console.log(value)
+    return (
+        value === undefined ||
+        value === null ||
+        (typeof value === "object" && Object.keys(value).length === 0) ||
+        (typeof value === "string" && value.trim().length === 0)
+    );
 }
 

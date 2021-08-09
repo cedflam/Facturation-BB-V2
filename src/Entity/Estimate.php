@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\OrderBy;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=EstimateRepository::class)
@@ -22,6 +23,7 @@ class Estimate
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"customers_read"})
      *
      */
     private $id;
@@ -35,32 +37,38 @@ class Estimate
     }
     /**
      * @ORM\Column(type="float")
+     * @Groups({"customers_read"})
      */
     private $totalHt;
 
     /**
      * @ORM\Column(type="float")
+     * @Groups({"customers_read"})
      */
     private $totalTtc;
 
     /**
      * @ORM\Column(type="float")
+     * @Groups({"customers_read"})
      */
     private $totalAdvance;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Groups({"customers_read"})
      *
      */
     private $state;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups({"customers_read"})
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"customers_read"})
      */
     private $reference;
 
@@ -77,11 +85,13 @@ class Estimate
 
     /**
      * @ORM\OneToMany(targetEntity=Description::class, mappedBy="estimate")
+     * @Groups({"customers_read"})
      */
     private $descriptions;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Groups({"customers_read"})
      */
     private $archive;
 

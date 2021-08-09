@@ -1,8 +1,8 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import logo from "../../public/img/bb-logo.jpg";
 import {Link} from "react-router-dom";
 
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {logout} from "../redux/actions/loginActions";
 
 const HeaderComponent = ({isAuthenticated, onLogout, history}) => {
@@ -19,7 +19,7 @@ const HeaderComponent = ({isAuthenticated, onLogout, history}) => {
     return (
         <Fragment>
             { isAuthenticated &&
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark ">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
                 <a className="navbar-brand" href="#">
                     <img src={logo} alt="logo"/>
                 </a>
@@ -34,7 +34,7 @@ const HeaderComponent = ({isAuthenticated, onLogout, history}) => {
                     <ul className="navbar-nav ml-auto">
 
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Clients</a>
+                            <Link className="nav-link" to="/customers" >Clients</Link>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="#">Devis</a>
