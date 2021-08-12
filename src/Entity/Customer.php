@@ -37,13 +37,13 @@ class Customer
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"customers_read"})
+     * @Groups({"customers_read", "estimates_read"})
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"customers_read"})
+     * @Groups({"customers_read", "estimates_read"})
      */
     private $lastname;
 
@@ -91,7 +91,7 @@ class Customer
     /**
      * @ORM\OneToMany(targetEntity=Invoice::class, mappedBy="customer")
      * @ORM\OrderBy({"createdAt" = "DESC"})
-     * @Groups({"customers_read"})
+     *
      */
     private $invoices;
 

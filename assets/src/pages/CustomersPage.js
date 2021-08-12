@@ -1,32 +1,30 @@
 import React, {Fragment, useEffect, useState} from 'react';
-import {useDispatch, useSelector, connect} from "react-redux";
-import {findAllCustomers} from "../redux/actions/customerActions";
-import {isEmpty} from "../service/AppService";
+import { connect} from "react-redux";
+import {customersApiCall} from "../redux/actions/customerActions";
+import LoaderComponent from "../components/LoaderComponent";
 
 
-const CustomersPage = () => {
+const CustomersPage = ({customersData, customers }) => {
 
-    // redux
-    const dispatch = useDispatch();
-    const customers = useSelector( (state) => state.customerReducer);
+    // Je récupère les datas
+    useEffect( () => {
+        customers();
+    }, [customers])
+
+
     //Propriétés
     const [search, setSearch] = useState("");
-    // Je récupère les customers
-    useEffect(() => {
-        dispatch(findAllCustomers());
-    }, []);
     // Recherche
     const handleChange = (e) => {
         const value = e.target.value
         setSearch(value);
     }
-    //const filteredCustomers = customers.filter(c => c.firstname.include(search))
 
     return (
         <Fragment>
             <div className="container-fluid ">
                 <div className="container p-5 mt-5">
-                    <div className="display-4 text-white ">Mes Clients </div>
+                    <div className="display-4 text-white ">Mes Clients</div>
                     <hr className="bg-light"/>
                     <input className="form-control mt-5" type="text" name="search" onChange={(e) => handleChange(e)}/>
                     <table className="table table-hover table-dark   mt-2">
@@ -41,7 +39,7 @@ const CustomersPage = () => {
                         </tr>
                         </thead>
                         <tbody>
-                        { !isEmpty(Object.values(customers)) &&  Object.values(customers)[0].map((customer, index) =>
+                        {  Object.values(customersData.customers).map((customer, index) =>
                             <tr key={index}>
                                 <th scope="row">{customer.firstname} {customer.lastname}</th>
                                 <td>{customer.email}</td>
@@ -65,10 +63,27 @@ const CustomersPage = () => {
                         )}
                         </tbody>
                     </table>
+                    { customersData.isLoading &&
+                        <div className="text-center mt-5">
+                            <LoaderComponent/>
+                        </div>
+                    }
                 </div>
             </div>
         </Fragment>
     );
 };
 
-export default CustomersPage;
+const mapStateToProps = (state) => {
+    return {
+        customersData: state.customers
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        customers: () => dispatch(customersApiCall())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CustomersPage);

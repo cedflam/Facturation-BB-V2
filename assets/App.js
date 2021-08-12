@@ -14,8 +14,8 @@ import NoMatchComponent from "./src/components/NoMatchComponent";
 import CustomersPage from "./src/pages/CustomersPage";
 import PrivateRoute from "./src/components/PrivateRoute";
 
-// Je lance la configuration d'axios
-axiosSetupService();
+
+axiosSetupService()
 
 function App() {
 

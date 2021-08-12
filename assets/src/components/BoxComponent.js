@@ -1,15 +1,18 @@
 import React, {Fragment} from 'react';
+import LoaderComponent from "./LoaderComponent";
 
-const BoxComponent = ({title, number, link, logo, color}) => {
+const BoxComponent = ({title, number, link, logo, color, isLoading}) => {
 
     return (
         <Fragment>
             <div className="col-md-4">
-                <div className="card border-0  mt-3" id="divShadow">
+                <div className="card border-0  mt-3" id="">
                     <div className={`card-body  text-white rounded-top bg-${color}`} >
                         <div className="row">
                             <div className="ml-3">
-                                <h1 className="font-weight-bold">{number}</h1>
+                                <h1 className="font-weight-bold">
+                                    {!isLoading ? number : <LoaderComponent/> }
+                                </h1>
                                 <p>{title}</p>
                             </div>
                             <h1 className=" display-4 ml-auto mr-3">
@@ -24,6 +27,7 @@ const BoxComponent = ({title, number, link, logo, color}) => {
                         </a>
                     </div>
                 </div>
+
             </div>
         </Fragment>
     );

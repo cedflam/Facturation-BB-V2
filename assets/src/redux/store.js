@@ -7,10 +7,10 @@ import invoiceReducer from "./reducers/invoiceReducer";
 import loginReducer from "./reducers/loginReducer";
 
 const rootReducer = combineReducers({
-    customerReducer,
-    estimateReducer,
-    invoiceReducer,
-    loginReducer
+    customers: customerReducer,
+    estimates: estimateReducer,
+    invoices: invoiceReducer,
+    login: loginReducer
 
 });
 

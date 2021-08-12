@@ -2,10 +2,10 @@ import React, {Fragment, useEffect, useState} from 'react';
 import logo from "../../public/img/bb-logo.jpg";
 import {Link} from "react-router-dom";
 
-import {useDispatch, useSelector} from "react-redux";
+import {connect, useDispatch, useSelector} from "react-redux";
 import {logout} from "../redux/actions/loginActions";
 
-const HeaderComponent = ({isAuthenticated, onLogout, history}) => {
+const HeaderComponent = ({onLogout, history, isAuthenticated}) => {
 
     // Propriétés
     const dispatch = useDispatch();
@@ -66,5 +66,9 @@ const HeaderComponent = ({isAuthenticated, onLogout, history}) => {
         </Fragment>
     );
 };
-
-export default HeaderComponent;
+const mapStateToProps = (state) => {
+    return {
+        loginData: state.login
+    }
+}
+export default connect(mapStateToProps)(HeaderComponent);

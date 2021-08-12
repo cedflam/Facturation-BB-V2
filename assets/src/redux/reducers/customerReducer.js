@@ -1,18 +1,33 @@
-const INITIAL_STATE = {};
+const INITIAL_STATE = {
+    customers: [],
+    nbCustomers: 0,
+    isLoading: true,
+    error: ''
+};
 
-function customerReducer(state = INITIAL_STATE, action)
-{
-    switch (action.type){
-        case 'FIND_NB_CUSTOMERS' : {
+function customerReducer(state = INITIAL_STATE, action) {
+    switch (action.type) {
+        case 'LOAD_CUSTOMERS' : {
             return {
                 ...state,
-                nbCustomers : action.payload
+                isLoading: true
             }
         }
-        case 'FIND_ALL_CUSTOMERS' : {
+        case 'LOAD_CUSTOMERS_SUCCESS' : {
             return {
                 ...state,
-                customers: action.payload
+                isLoading: false,
+                customers: action.payload,
+                nbCustomers: action.payload.length,
+                error: ''
+            }
+        }
+        case 'LOAD_CUSTOMERS_ERROR' : {
+            return {
+                ...state,
+                isLoading: false,
+                customers: [],
+                error: action.payload
             }
         }
         default:

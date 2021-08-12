@@ -30,6 +30,7 @@ class CustomerController extends AbstractController
     /**
      * Permet de récupérer tous les clients
      * @Route("/api/customers", name="find_customers", methods={"GET"})
+     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
      */
     public function findCustomers(): Response
     {
@@ -38,7 +39,9 @@ class CustomerController extends AbstractController
         $datas = $this->serializer->normalize($customers, 'json',[
             'groups' => 'customers_read'
         ]);
-        return new JsonResponse($datas, Response::HTTP_OK);
+       $response = new JsonResponse($datas, Response::HTTP_OK);
+       $response->setMaxAge(3600);
+       return $response;
 
     }
 

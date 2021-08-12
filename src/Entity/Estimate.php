@@ -23,7 +23,7 @@ class Estimate
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"customers_read"})
+     * @Groups({"customers_read", "estimates_read"})
      *
      */
     private $id;
@@ -37,43 +37,44 @@ class Estimate
     }
     /**
      * @ORM\Column(type="float")
-     * @Groups({"customers_read"})
+     * @Groups({"customers_read", "estimates_read"})
      */
     private $totalHt;
 
     /**
      * @ORM\Column(type="float")
-     * @Groups({"customers_read"})
+     * @Groups({"customers_read", "estimates_read"})
      */
     private $totalTtc;
 
     /**
      * @ORM\Column(type="float")
-     * @Groups({"customers_read"})
+     * @Groups({"customers_read", "estimates_read"})
      */
     private $totalAdvance;
 
     /**
      * @ORM\Column(type="boolean")
-     * @Groups({"customers_read"})
+     * @Groups({"customers_read", "estimates_read"})
      *
      */
     private $state;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups({"customers_read"})
+     * @Groups({"customers_read", "estimates_read"})
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"customers_read"})
+     * @Groups({"customers_read", "estimates_read"})
      */
     private $reference;
 
     /**
      * @ORM\ManyToOne(targetEntity=Customer::class, inversedBy="estimates")
+     *  @Groups({"estimates_read"})
      */
     private $customer;
 
